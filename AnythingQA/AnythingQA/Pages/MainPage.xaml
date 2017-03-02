@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AnythingQA"
+             x:Class="AnythingQA.MainPage">
+  <ContentView x:Name="contentView" Padding="0,20,0,0">
+    <StackLayout VerticalOptions="CenterAndExpand">
+      <Label Text="Welcome to the Anything.QA!" HorizontalOptions="Center" />
+      <StackLayout VerticalOptions ="CenterAndExpand" Orientation ="Horizontal">
+        <Label Text="English" HorizontalOptions="FillAndExpand" HorizontalTextAlignment ="End">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer
+              Tapped="OnEnglishClicked"
+              NumberOfTapsRequired="1" />
+          </Label.GestureRecognizers>
+        </Label>
+        <Label Text="Arabic" HorizontalOptions="FillAndExpand" HorizontalTextAlignment ="Start">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer
+              Tapped="OnArabicClicked"
+              NumberOfTapsRequired="1" />
+          </Label.GestureRecognizers>
+        </Label>
+      </StackLayout>
+      <Button  Text="Grocery" Clicked="OnButtonGroceryClicked" />
+      <Button  Text="Restaurent" Clicked="OnButtonRestaurentClicked" />
+    </StackLayout>
+  </ContentView>
+</ContentPage>
