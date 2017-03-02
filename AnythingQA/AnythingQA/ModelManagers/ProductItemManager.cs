@@ -25,20 +25,21 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 
 namespace AnythingQA.ModelManagers
 {
-    public partial class ProductItemManager
+    public partial class SteamIronManager
     {
-        static ProductItemManager defaultInstance = new ProductItemManager();
+        static SteamIronManager defaultInstance = new SteamIronManager();
         MobileServiceClient client;
 
 #if OFFLINE_SYNC_ENABLED
         IMobileServiceSyncTable<ProductItem> productTable;
 #else
         IMobileServiceTable<ProductItem> productTable;
+
 #endif
 
         const string offlineDbPath = @"localstore.db";
 
-        public ProductItemManager()
+        public SteamIronManager()
         {
             this.client = new MobileServiceClient(Constants.ApplicationURL);
 
@@ -55,7 +56,7 @@ namespace AnythingQA.ModelManagers
 #endif
         }
 
-        public static ProductItemManager DefaultManager
+        public static SteamIronManager DefaultManager
         {
             get { return defaultInstance; }
             private set { defaultInstance = value; }

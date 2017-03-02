@@ -11,11 +11,11 @@ namespace AnythingQA.Pages
 {
     public partial class ProductItems : ContentPage
     {
-        ProductItemManager manager;
+        SteamIronManager manager;
         public ProductItems()
         {
             InitializeComponent();
-            manager = ProductItemManager.DefaultManager;
+            manager = SteamIronManager.DefaultManager;
         }
 
         protected override async void OnAppearing()
