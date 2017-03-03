@@ -28,7 +28,7 @@ namespace AnythingQA.Model
             set { name = value; }
         }
 
-		[JsonProperty(PropertyName = "details")]
+	[JsonProperty(PropertyName = "details")]
         public string Details
         {
             get { return details; }
@@ -43,14 +43,14 @@ namespace AnythingQA.Model
         }
 		
 		
-		[JsonProperty(PropertyName = "image")]
+	[JsonProperty(PropertyName = "image")]
         public string Image
         {
             get { return image; }
             set { image = value; }
         }
 		
-		[JsonProperty(PropertyName = "merchantId")]
+	[JsonProperty(PropertyName = "merchantId")]
         public string Merchant
         {
             get { return merchant; }
