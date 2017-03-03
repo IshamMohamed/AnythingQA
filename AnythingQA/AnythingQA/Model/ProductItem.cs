@@ -9,10 +9,10 @@ namespace AnythingQA.Model
         
         string id;
         string name;
-		string details;
+	string details;
         double price;
-		string image;
-		string merchant;
+	string image;
+	string merchant;
 
         [JsonProperty(PropertyName = "id")]
         public string Id
