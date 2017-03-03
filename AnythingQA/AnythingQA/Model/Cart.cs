@@ -9,8 +9,8 @@ namespace AnythingQA.Model
     {
         string id;
         string customer;
-		string merchant ;
-		ICollection<CartItem> cartItems;
+        string merchant ;
+        ICollection<CartItem> cartItems;
 
         [JsonProperty(PropertyName = "id")]
         public string Id
@@ -26,20 +26,20 @@ namespace AnythingQA.Model
             set { customer = value; }
         }
 
-		[JsonProperty(PropertyName = "merchantId")]
+        [JsonProperty(PropertyName = "merchantId")]
         public string Merchant 
         {
             get { return merchant; }
             set { merchant = value; }
         }
-		
-		[JsonProperty(PropertyName = "cartItem")]
+        
+        [JsonProperty(PropertyName = "cartItem")]
         public ICollection<CartItem> CartItems
         {
             get { return cartItems; }
             set { cartItems = value; }
         }
-		
+        
         [Version]
         public string Version { get; set; }
     }

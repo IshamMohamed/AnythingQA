@@ -32,11 +32,11 @@ namespace AnythingQA.ModelManagers
 
 #if OFFLINE_SYNC_ENABLED
         IMobileServiceSyncTable<ProductItem> productTable;
-		IMobileServiceSyncTable<Cart> cartTable;
-		IMobileServiceSyncTable<CartItem> cartItemTable;
-		IMobileServiceSyncTable<Customer> customerTable;
-		IMobileServiceSyncTable<Merchant> merchantTable;
-		IMobileServiceSyncTable<Order> orderTable;
+        IMobileServiceSyncTable<Cart> cartTable;
+        IMobileServiceSyncTable<CartItem> cartItemTable;
+        IMobileServiceSyncTable<Customer> customerTable;
+        IMobileServiceSyncTable<Merchant> merchantTable;
+        IMobileServiceSyncTable<Order> orderTable;
 #else
         IMobileServiceTable<ProductItem> productTable;
         IMobileServiceTable<Cart> cartTable;
