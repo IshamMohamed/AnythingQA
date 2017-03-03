@@ -1,6 +1,7 @@
 using System;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace AnythingQA.Model
 {
@@ -26,7 +27,7 @@ namespace AnythingQA.Model
         }
 
 		[JsonProperty(PropertyName = "merchantId")]
-        public int Merchant 
+        public string Merchant 
         {
             get { return merchant; }
             set { merchant = value; }

@@ -8,7 +8,7 @@ namespace AnythingQA.Model
     {
         string id;
         string product;
-		int count;
+        int count;
 
         [JsonProperty(PropertyName = "id")]
         public string Id
@@ -24,13 +24,13 @@ namespace AnythingQA.Model
             set { product = value; }
         }
 
-		[JsonProperty(PropertyName = "count")]
+        [JsonProperty(PropertyName = "count")]
         public int Count
         {
             get { return count; }
             set { count = value; }
         }
-		
+
         [Version]
         public string Version { get; set; }
     }

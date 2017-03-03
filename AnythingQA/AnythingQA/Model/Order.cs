@@ -8,9 +8,9 @@ namespace AnythingQA.Model
     {
         string id;
         string cart;
-		string deliveryAddress;
-		double amount;
-		OrderStatus orderStatus;
+        string deliveryAddress;
+        double amount;
+        OrderStatus orderStatus;
 
         [JsonProperty(PropertyName = "id")]
         public string Id
@@ -26,32 +26,32 @@ namespace AnythingQA.Model
             set { cart = value; }
         }
 
-		[JsonProperty(PropertyName = "deliveryAddress")]
-        public int DeliveryAddress
+        [JsonProperty(PropertyName = "deliveryAddress")]
+        public string DeliveryAddress
         {
             get { return deliveryAddress; }
             set { deliveryAddress = value; }
         }
-		
-		[JsonProperty(PropertyName = "amount")]
-        public int Amount
+
+        [JsonProperty(PropertyName = "amount")]
+        public double Amount
         {
             get { return amount; }
             set { amount = value; }
         }
-		
-		[JsonProperty(PropertyName = "orderStatus")]
+
+        [JsonProperty(PropertyName = "orderStatus")]
         public OrderStatus OrderStatus
         {
             get { return orderStatus; }
             set { orderStatus = value; }
         }
-		
+
         [Version]
         public string Version { get; set; }
     }
-	
-	public enum OrderStatus
+
+    public enum OrderStatus
     {
         CustomerOrdered,    // When Customer First Made and Order
         MerchantViewed,     // Order was made, but merchant didnt read this - Will be used when filtering NON-VIEWED Orders for Merchant

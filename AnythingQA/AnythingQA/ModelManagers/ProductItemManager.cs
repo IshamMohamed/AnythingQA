@@ -39,11 +39,11 @@ namespace AnythingQA.ModelManagers
 		IMobileServiceSyncTable<Order> orderTable;
 #else
         IMobileServiceTable<ProductItem> productTable;
-		IMobileServiceTable<Cart> cartTable;
-		IMobileServiceTable<CartItem> cartItemTable;
-		IMobileServiceTable<Customer> customerTable;
-		IMobileServiceTable<Merchant> merchantTable;
-		IMobileServiceTable<Order> orderTable;
+        IMobileServiceTable<Cart> cartTable;
+        IMobileServiceTable<CartItem> cartItemTable;
+        IMobileServiceTable<Customer> customerTable;
+        IMobileServiceTable<Merchant> merchantTable;
+        IMobileServiceTable<Order> orderTable;
 
 #endif
 
@@ -72,11 +72,12 @@ namespace AnythingQA.ModelManagers
             private set { defaultInstance = value; }
         }
 
-        public bool IsOfflineEnabled {
+        public bool IsOfflineEnabled
+        {
             get { return productTable is Microsoft.WindowsAzure.MobileServices.Sync.IMobileServiceSyncTable<ProductItem>; }
         }
 
-		#region ProductItem
+        #region ProductItem
         public async Task<ObservableCollection<ProductItem>> GetProductItemAsync(bool syncItems = false)
         {
             try
@@ -158,9 +159,9 @@ namespace AnythingQA.ModelManagers
             }
         }
 #endif
-		#endregion
-		
-		#region Cart
+        #endregion
+
+        #region Cart
         public async Task<ObservableCollection<Cart>> GetCartAsync(bool syncItems = false)
         {
             try
@@ -242,9 +243,9 @@ namespace AnythingQA.ModelManagers
             }
         }
 #endif
-		#endregion
-    
-		#region CartItem
+        #endregion
+
+        #region CartItem
         public async Task<ObservableCollection<CartItem>> GetCartItemAsync(bool syncItems = false)
         {
             try
@@ -326,9 +327,9 @@ namespace AnythingQA.ModelManagers
             }
         }
 #endif
-		#endregion
-	
-		#region Customer
+        #endregion
+
+        #region Customer
         public async Task<ObservableCollection<Customer>> GetCustomerAsync(bool syncItems = false)
         {
             try
@@ -410,9 +411,9 @@ namespace AnythingQA.ModelManagers
             }
         }
 #endif
-		#endregion
-	
-		#region Merchant
+        #endregion
+
+        #region Merchant
         public async Task<ObservableCollection<Merchant>> GetMerchantAsync(bool syncItems = false)
         {
             try
@@ -494,9 +495,9 @@ namespace AnythingQA.ModelManagers
             }
         }
 #endif
-		#endregion
-	
-		#region Order
+        #endregion
+
+        #region Order
         public async Task<ObservableCollection<Order>> GetOrderAsync(bool syncItems = false)
         {
             try
@@ -578,6 +579,6 @@ namespace AnythingQA.ModelManagers
             }
         }
 #endif
-		#endregion
-	}
+        #endregion
+    }
 }

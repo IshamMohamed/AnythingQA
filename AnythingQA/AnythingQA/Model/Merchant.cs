@@ -8,9 +8,9 @@ namespace AnythingQA.Model
     {
         string id;
         string name;
-		string address;
-		string email;
-		string phone;
+        string address;
+        string email;
+        string phone;
 
         [JsonProperty(PropertyName = "id")]
         public string Id
@@ -26,21 +26,21 @@ namespace AnythingQA.Model
             set { name = value; }
         }
 
-		[JsonProperty(PropertyName = "address")]
+        [JsonProperty(PropertyName = "address")]
         public string Address
         {
             get { return address; }
             set { address = value; }
         }
-		
-		[JsonProperty(PropertyName = "email")]
+
+        [JsonProperty(PropertyName = "email")]
         public string Email
         {
             get { return email; }
             set { email = value; }
         }
-		
-		[JsonProperty(PropertyName = "phone")]
+
+        [JsonProperty(PropertyName = "phone")]
         public string Phone
         {
             get { return phone; }
