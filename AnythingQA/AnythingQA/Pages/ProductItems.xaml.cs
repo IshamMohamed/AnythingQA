@@ -51,7 +51,7 @@ namespace AnythingQA.Pages
             //var answer = await DisplayAlert("Question?", "Would you like to play a game", "Yes", "No");
             var mi = ((MenuItem)sender);
             ProductItem selectedProdItem = mi.CommandParameter as ProductItem;
-            cartPage.AddCartItem(selectedProdItem.Id, selectedProdItem.Name, 1);
+            cartPage.AddCartItem(selectedProdItem.Id, selectedProdItem.Name, 1, selectedProdItem.Price);
         }
 
         public async void OnRefresh(object sender, EventArgs e)

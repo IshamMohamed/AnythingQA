@@ -33,7 +33,7 @@ namespace AnythingQA.Model
             set { deliveryAddress = value; }
         }
 
-        [JsonProperty(PropertyName = "amount")]
+        [JsonProperty(PropertyName = "amountToBePaid")]
         public double Amount
         {
             get { return amount; }

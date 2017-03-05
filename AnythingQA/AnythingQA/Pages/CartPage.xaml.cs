@@ -22,7 +22,6 @@ namespace AnythingQA.Pages
             InitializeComponent();
             manager = SteamIronManager.DefaultManager;
             cart = new Cart();
-            this.InitCart();
         }
 
         protected override void OnAppearing()
@@ -36,21 +35,9 @@ namespace AnythingQA.Pages
             cartItemsList.ItemsSource = tempCartItems;
         }
 
-        private void InitCart()
+        public void AddCartItem(string itemId, string name, int count, double price)
         {
-            cart.Id = Guid.NewGuid().ToString("N");
-            cart.Customer = "CUSTOMER GUID FROM SETTINGS";
-            cart.Merchant = "MERCHANT GUID FROM NAVIGATION";
-        }
-
-        public void AddCartItem(string itemId, string name, int count)
-        {
-            //CartItem item = new CartItem();
-            //item.Id = Guid.NewGuid().ToString("N");
-            //item.Product = itemId;
-            //item.Count = count;
-            //cart.CartItems.Add(item);
-            tempCartItems.Add(new TempCartItem { ProductId = itemId, Name = name, Count = count });
+            tempCartItems.Add(new TempCartItem { ProductId = itemId, Name = name, Count = count, Price = price });
         }
 
         private void UpdateCartItemCount(string itemId, int count)
@@ -74,21 +61,27 @@ namespace AnythingQA.Pages
         public async void OnButtonCheckoutClicked(object sender, EventArgs e)
         {
             List<CartItem> cartItems = new List<CartItem>();
+            double totalCost = 0;
 
             foreach (var item in tempCartItems)
             {
                 CartItem cartItem = new CartItem { Id = Guid.NewGuid().ToString("N"), Product = item.ProductId, Count = item.Count };
                 cartItems.Add(cartItem);
+
+                // Price Calculation
+                totalCost += item.Price*item.Count;
             }
 
             var cart = new Cart
             {
-                Customer = "f2565d1471724176814cadba368f52fc",
-                Merchant = "81c687c3-1365-4498-86db-533540537b71",
+                Customer = "f2565d1471724176814cadba368f52fc", // FETCH FROM SETTINGS
+                Merchant = "81c687c3-1365-4498-86db-533540537b71", // FETCH FROM NAVIGATION
                 CartItems = cartItems
             };
-
             await AddCart(cart);
+
+            var order = new Order { Cart = cart.Id, DeliveryAddress = "GetFromCart", Amount = totalCost, OrderStatus = OrderStatus.CustomerOrdered };
+            await AddOrder(order);
         }
 
         async Task AddCart(Cart cart)
@@ -96,11 +89,10 @@ namespace AnythingQA.Pages
             await manager.SaveCartAsync(cart);
         }
 
-        async Task AddCartItems(CartItem cartItem)
-        { }
-
         async Task AddOrder(Order order)
-        { }
+        {
+            await manager.SaveOrderAsync(order);
+        }
     }
 
     public class TempCartItem
@@ -108,5 +100,6 @@ namespace AnythingQA.Pages
         public string ProductId { get; set; }
         public string Name { get; set; }
         public int Count { get; set; }
+        public double Price { get; set; }
     }
 }
