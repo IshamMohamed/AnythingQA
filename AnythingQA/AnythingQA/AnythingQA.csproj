@@ -40,18 +40,24 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="ModelManagers\ProductItemManager.cs" />
+    <Compile Include="ModelManagers\SteamIronManager.cs" />
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\CartItem.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Merchant.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\ProductItem.cs" />
+    <Compile Include="Pages\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProductItems.xaml.cs">
       <DependentUpon>ProductItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShoppingPage.xaml.cs">
+      <DependentUpon>ShoppingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\SelectLocation.xaml.cs">
@@ -127,6 +133,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ProductItems.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ShoppingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

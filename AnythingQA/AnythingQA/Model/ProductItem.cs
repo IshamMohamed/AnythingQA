@@ -42,6 +42,11 @@ namespace AnythingQA.Model
             set { price = value; }
         }
 
+        public string PriceText
+        {
+            get { return string.Format("USD {0}", price); }
+        }
+
 
         [JsonProperty(PropertyName = "image")]
         public string Image

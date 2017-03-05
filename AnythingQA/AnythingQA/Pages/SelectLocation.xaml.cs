@@ -80,7 +80,10 @@ namespace AnythingQA
         }
         void OnButtonGoShoppingClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new ProductItems());
+            var xamlTab = new TabbedPage();
+            xamlTab.Children.Add(new ProductItems { Title = "Products" });
+            xamlTab.Children.Add(new CartPage { Title = "Cart" });
+            Navigation.PushModalAsync(xamlTab);
         }
     }
 }

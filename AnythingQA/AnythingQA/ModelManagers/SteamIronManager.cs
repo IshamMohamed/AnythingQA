@@ -63,6 +63,12 @@ namespace AnythingQA.ModelManagers
             this.productTable = client.GetSyncTable<ProductItem>();
 #else
             this.productTable = client.GetTable<ProductItem>();
+            this.cartItemTable = client.GetTable<CartItem>();
+            this.cartTable = client.GetTable<Cart>();
+            this.customerTable = client.GetTable<Customer>();
+            this.merchantTable = client.GetTable<Merchant>();
+            this.orderTable = client.GetTable<Order>();
+
 #endif
         }
 
