@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnythingQA.Pages.MerchantPages.AddProduct">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label Text="Name of the Product"/>
+            <Entry x:Name="txtProductName"/>
+            <Label Text="Details"/>
+            <Entry x:Name="txtProductDetails"/>
+            <Label Text="Price"/>
+            <Entry x:Name="txtProductPrice"/>
+            <Button x:Name="btnAddProduct" Text="Sign Up" Clicked="AddProduct_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -10,8 +10,9 @@ using Xamarin.Forms.Maps;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using AnythingQA.Pages;
+using AnythingQA.Pages.MerchantPages;
 
-namespace AnythingQA
+namespace AnythingQA.Pages
 {
     public partial class SelectLocation : ContentPage
     {
@@ -80,10 +81,8 @@ namespace AnythingQA
         }
         void OnButtonGoShoppingClicked(object sender, EventArgs e)
         {
-            var xamlTab = new TabbedPage();
-            xamlTab.Children.Add(new ProductItems { Title = "Products" });
-            xamlTab.Children.Add(new CartPage { Title = "Cart" });
-            Navigation.PushModalAsync(xamlTab);
+            //Navigation.PushModalAsync(new ShoppingPage());
+            Navigation.PushModalAsync(new ShoppingPage());
         }
     }
 }

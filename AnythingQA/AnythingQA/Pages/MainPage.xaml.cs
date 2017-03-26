@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AnythingQA.Pages;
+using System;
 using Xamarin.Forms;
+using Microsoft.WindowsAzure.MobileServices;
+using AnythingQA.Pages.MerchantPages;
 
 namespace AnythingQA
 {
@@ -12,16 +11,35 @@ namespace AnythingQA
         public MainPage()
         {
             InitializeComponent();
+            CheckRegistered();
         }
 
+        private void CheckRegistered()
+        {
+            bool isCustomer = Application.Current.Properties.ContainsKey(Constants.AppDataGeneralCustomerUserType);
+            bool isMerchant = Application.Current.Properties.ContainsKey(Constants.AppDataGeneralMerchantUserType);
+            if (!isCustomer || !isMerchant)
+            {
+                DisplayAlert("", isCustomer.ToString() + " " + isMerchant.ToString(), "OK");
+                Navigation.PushModalAsync(new RegisterCustomer());
+            }
+            else if (!isCustomer && isMerchant)
+            {
+                DisplayAlert("", isCustomer.ToString() + " " + isMerchant.ToString(), "OK");
+                Navigation.PushModalAsync(new MerchantPage());
+            }
+
+            // If customer, continue to this page
+            // If both customer and merchant - WHAT HAS TO BE DONE?
+        }
+        
         void OnButtonGroceryClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new SelectLocation());
+            Navigation.PushModalAsync(new ShoppingPage());
         }
 
         void OnButtonRestaurentClicked(object sender, EventArgs e)
         {
-
         }
 
         async void OnEnglishClicked(object sender, EventArgs e)

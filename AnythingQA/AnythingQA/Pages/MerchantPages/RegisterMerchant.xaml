@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnythingQA.Pages.MerchantPages.RegisterMerchant">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label Text="Name"/>
+            <Entry x:Name="txtMerchName"/>
+            <Label Text="Permanant Address"/>
+            <Entry x:Name="txtMerchAddress"/>
+            <Label Text="Phone No"/>
+            <Entry x:Name="txtMerchPhoneNo"/>
+            <Label Text="Email"/>
+            <Entry x:Name="txtMerchEmail"/>
+            <Button Text="Authenticate Me" Clicked="AthencicateUser_Clicked"/>
+            <Label Text="SMS Code"/>
+            <Entry x:Name="txtMerchSMSCode"/>
+            <Button x:Name="btnRegister" Text="Sign Up" Clicked="Register_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

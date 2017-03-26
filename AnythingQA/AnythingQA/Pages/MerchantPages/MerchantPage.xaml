@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AnythingQA.Pages.MerchantPages.MerchantPage">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Button Text="All Orders" Clicked="CheckOrders_Clicked"/>
+            <Button Text="My Orders" Clicked="MyOrderes_Clicked"/>
+            <Button Text="Add New Product" Clicked="AddProduct_Clicked"/>
+            <Button Text="Modify a Product" Clicked="ModifyProduct_Clicked"/>
+            <Button Text="Remove a Product" Clicked="RemoveProduct_Clicked"/>
+            <Button Text="Edit My Details" Clicked="EditMyDetails_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -78,6 +78,12 @@ namespace AnythingQA.ModelManagers
             private set { defaultInstance = value; }
         }
 
+        public MobileServiceClient CurrentClient
+        {
+            get { return client; }
+        }
+
+
         public bool IsOfflineEnabled
         {
             get { return productTable is Microsoft.WindowsAzure.MobileServices.Sync.IMobileServiceSyncTable<ProductItem>; }

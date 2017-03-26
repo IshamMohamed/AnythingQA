@@ -47,6 +47,18 @@
     <Compile Include="Model\Merchant.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\ProductItem.cs" />
+    <Compile Include="Pages\MerchantPages\AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MerchantPages\MerchantPage.xaml.cs">
+      <DependentUpon>MerchantPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MerchantPages\RegisterMerchant.xaml.cs">
+      <DependentUpon>RegisterMerchant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegisterCustomer.xaml.cs">
+      <DependentUpon>RegisterCustomer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +157,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ShoppingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\RegisterCustomer.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MerchantPages\RegisterMerchant.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MerchantPages\MerchantPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MerchantPages\AddProduct.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

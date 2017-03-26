@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -80,8 +79,15 @@ namespace AnythingQA.Pages
             };
             await AddCart(cart);
 
-            var order = new Order { Cart = cart.Id, DeliveryAddress = "GetFromCart", Amount = totalCost, OrderStatus = OrderStatus.CustomerOrdered };
+            var order = new Order {
+                Cart = cart.Id,
+                DeliveryAddress = "GetFromCart", 
+                Amount = totalCost,
+                OrderStatus = OrderStatus.CustomerOrdered
+            };
             await AddOrder(order);
+
+            await DisplayAlert("", "Successfully Order has been made", "OK");
         }
 
         async Task AddCart(Cart cart)
