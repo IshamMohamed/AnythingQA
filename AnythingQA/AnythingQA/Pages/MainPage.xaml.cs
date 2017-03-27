@@ -16,9 +16,14 @@ namespace AnythingQA
 
         private void CheckRegistered()
         {
-            bool isCustomer = Application.Current.Properties.ContainsKey(Constants.AppDataGeneralCustomerUserType);
-            bool isMerchant = Application.Current.Properties.ContainsKey(Constants.AppDataGeneralMerchantUserType);
-            if (!isCustomer || !isMerchant)
+            bool isCustomer = false;
+            bool isMerchant = false;
+            if (Application.Current.Properties.ContainsKey(Constants.AppDataGeneralUserType))
+            {
+                isCustomer = Equals(Application.Current.Properties[Constants.AppDataGeneralUserType], Constants.AppDataGeneralCustomerUserType);
+                isMerchant = Equals(Application.Current.Properties[Constants.AppDataGeneralUserType], Constants.AppDataGeneralMerchantUserType);
+            }
+            if (!isCustomer && !isMerchant)
             {
                 DisplayAlert("", isCustomer.ToString() + " " + isMerchant.ToString(), "OK");
                 Navigation.PushModalAsync(new RegisterCustomer());
@@ -35,7 +40,7 @@ namespace AnythingQA
         
         void OnButtonGroceryClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new ShoppingPage());
+            Navigation.PushModalAsync(new SelectLocation());
         }
 
         void OnButtonRestaurentClicked(object sender, EventArgs e)

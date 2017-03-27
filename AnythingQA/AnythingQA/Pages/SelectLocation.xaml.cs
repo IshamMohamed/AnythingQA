@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 using Plugin.Geolocator;
-using Plugin.Geolocator.Abstractions;
-using AnythingQA.Pages;
-using AnythingQA.Pages.MerchantPages;
+using System.Threading.Tasks;
 
 namespace AnythingQA.Pages
 {
@@ -23,7 +18,7 @@ namespace AnythingQA.Pages
             //PutSomePinsOnMap();
         }
 
-        async void PutSomePinsOnMap()
+        async Task PutSomePinsOnMap()
         {
             //// define a center point and some sample pins
             //Position tourEiffel = new Position(48.859217, 2.293914);
@@ -49,10 +44,11 @@ namespace AnythingQA.Pages
             try
             {
                 var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 1;
                 if (!locator.IsListening)
                     await locator.StartListeningAsync(100, 1000);
                 var x = locator.IsGeolocationAvailable;
-                position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+                position = await locator.GetPositionAsync();
             }
             catch (Exception ex)
             {
@@ -67,11 +63,11 @@ namespace AnythingQA.Pages
             theMap.Pins.Add(myLocationPin);
             theMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude),
                                                          Distance.FromMiles(0.25)));
+            PrintItemsToTextBox();
         }
 
-        async void OnButtonGetCurrrentLocClicked(object sender, EventArgs e)
+        private async void PrintItemsToTextBox()
         {
-            PutSomePinsOnMap();
             Geocoder geocoder = new Geocoder();
             var addresses = await geocoder.GetAddressesForPositionAsync(new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude));
             //foreach (var address in addresses)
@@ -79,9 +75,15 @@ namespace AnythingQA.Pages
 
             txtDeliveryAddress.Text = addresses.FirstOrDefault();
         }
+
+        async void OnButtonGetCurrrentLocClicked(object sender, EventArgs e)
+        {
+            await PutSomePinsOnMap();
+            if (position == null)
+                return;
+        }
         void OnButtonGoShoppingClicked(object sender, EventArgs e)
         {
-            //Navigation.PushModalAsync(new ShoppingPage());
             Navigation.PushModalAsync(new ShoppingPage());
         }
     }

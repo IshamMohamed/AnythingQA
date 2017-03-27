@@ -53,8 +53,10 @@ namespace AnythingQA.Pages.MerchantPages
                 };
                 await RegisterMerchantToSystem(merchant);
                 AddMerchantDataToAppProps(merchant);
-                Application.Current.Properties.Add(Constants.AppDataGeneralRegisteredKey, true);
-                Application.Current.Properties.Add(Constants.AppDataGeneralUserType, Constants.AppDataGeneralMerchantUserType);
+                if (!Application.Current.Properties.ContainsKey(Constants.AppDataGeneralRegisteredKey))
+                    Application.Current.Properties.Add(Constants.AppDataGeneralRegisteredKey, true);
+                if (!Application.Current.Properties.ContainsKey(Constants.AppDataGeneralUserType))
+                    Application.Current.Properties.Add(Constants.AppDataGeneralUserType, Constants.AppDataGeneralMerchantUserType);
                 await DisplayAlert("", "Successfully Registered.", "Continue Shopping");
                 await Navigation.PushModalAsync(new MerchantPage());
             }
@@ -67,11 +69,16 @@ namespace AnythingQA.Pages.MerchantPages
 
         private void AddMerchantDataToAppProps(Merchant merchant)
         {
-            Application.Current.Properties.Add(Constants.AppDataMerchantNameKey, merchant.Name);
-            Application.Current.Properties.Add(Constants.AppDataMerchantPhoneNoKey, merchant.Phone);
-            Application.Current.Properties.Add(Constants.AppDataMerchantEmailKey, merchant.Email);
-            Application.Current.Properties.Add(Constants.AppDataMerchantIdKey, merchant.Id);
-            Application.Current.Properties.Add(Constants.AppDataMerchantAddressKey, merchant.Address);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataMerchantNameKey))
+                Application.Current.Properties.Add(Constants.AppDataMerchantNameKey, merchant.Name);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataMerchantPhoneNoKey))
+                Application.Current.Properties.Add(Constants.AppDataMerchantPhoneNoKey, merchant.Phone);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataMerchantEmailKey))
+                Application.Current.Properties.Add(Constants.AppDataMerchantEmailKey, merchant.Email);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataMerchantIdKey))
+                Application.Current.Properties.Add(Constants.AppDataMerchantIdKey, merchant.Id);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataMerchantAddressKey))
+                Application.Current.Properties.Add(Constants.AppDataMerchantAddressKey, merchant.Address);
         }
     }
 }

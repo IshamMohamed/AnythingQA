@@ -61,8 +61,10 @@ namespace AnythingQA.Pages
                 };
                 await RegisterCustomerToSystem(customer);
                 AddCustomerDataToAppProps(customer);
-                Application.Current.Properties.Add(Constants.AppDataGeneralRegisteredKey, true);
-                Application.Current.Properties.Add(Constants.AppDataGeneralUserType, Constants.AppDataGeneralMerchantUserType);
+                if (!Application.Current.Properties.ContainsKey(Constants.AppDataGeneralRegisteredKey))
+                    Application.Current.Properties.Add(Constants.AppDataGeneralRegisteredKey, true);
+                if (!Application.Current.Properties.ContainsKey(Constants.AppDataGeneralUserType))
+                    Application.Current.Properties.Add(Constants.AppDataGeneralUserType, Constants.AppDataGeneralCustomerUserType);
                 await DisplayAlert("", "Successfully Registered.", "Continue Shopping");
                 await Navigation.PushModalAsync(new MainPage());
             }
@@ -75,12 +77,16 @@ namespace AnythingQA.Pages
 
         private void AddCustomerDataToAppProps(Customer customer)
         {
-            Application.Current.Properties.Add(Constants.AppDataCustomerNameKey, customer.Name);
-            Application.Current.Properties.Add(Constants.AppDataCustomerPhoneNoKey, customer.Phone);
-            Application.Current.Properties.Add(Constants.AppDataCustomerEmailKey, customer.Email);
-            Application.Current.Properties.Add(Constants.AppDataCustomerIdKey, customer.Id);
-            Application.Current.Properties.Add(Constants.AppDataCustomerAddressKey, customer.Address);
-            Application.Current.Properties.Add(Constants.AppDataCustomerPointsKey, customer.Points);
+            if(!Application.Current.Properties.ContainsKey(Constants.AppDataCustomerPhoneNoKey))
+                Application.Current.Properties.Add(Constants.AppDataCustomerPhoneNoKey, customer.Phone);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataCustomerEmailKey))
+                Application.Current.Properties.Add(Constants.AppDataCustomerEmailKey, customer.Email);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataCustomerIdKey))
+                Application.Current.Properties.Add(Constants.AppDataCustomerIdKey, customer.Id);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataCustomerAddressKey))
+                Application.Current.Properties.Add(Constants.AppDataCustomerAddressKey, customer.Address);
+            if (!Application.Current.Properties.ContainsKey(Constants.AppDataCustomerPointsKey))
+                Application.Current.Properties.Add(Constants.AppDataCustomerPointsKey, customer.Points);
         }
 
         private void OnTapGestureRecognizerTapped(object sender, EventArgs args)

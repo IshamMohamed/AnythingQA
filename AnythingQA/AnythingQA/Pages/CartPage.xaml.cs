@@ -15,12 +15,17 @@ namespace AnythingQA.Pages
         SteamIronManager manager;
         static Cart cart;
         static ObservableCollection<TempCartItem> tempCartItems = new ObservableCollection<TempCartItem>();
+        string customerId;
+        string merchantId;
 
         public CartPage()
         {
             InitializeComponent();
             manager = SteamIronManager.DefaultManager;
             cart = new Cart();
+            if (Application.Current.Properties.ContainsKey(Constants.AppDataCustomerIdKey))
+                customerId = (string)Application.Current.Properties[Constants.AppDataCustomerIdKey];
+            merchantId = "81c687c3-1365-4498-86db-533540537b71"; // FETCH FROM NAVIGATION
         }
 
         protected override void OnAppearing()
@@ -73,8 +78,8 @@ namespace AnythingQA.Pages
 
             var cart = new Cart
             {
-                Customer = "f2565d1471724176814cadba368f52fc", // FETCH FROM SETTINGS
-                Merchant = "81c687c3-1365-4498-86db-533540537b71", // FETCH FROM NAVIGATION
+                Customer = customerId,
+                Merchant = merchantId,
                 CartItems = cartItems
             };
             await AddCart(cart);
