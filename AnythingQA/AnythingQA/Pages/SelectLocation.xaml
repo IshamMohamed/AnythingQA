@@ -7,8 +7,8 @@
     <StackLayout VerticalOptions="CenterAndExpand">
       <Grid>
         <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="9*" />
           <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Entry x:Name="txtDeliveryAddress" Grid.Column="0" HorizontalOptions="Fill" Placeholder="Address To Deliver" PlaceholderColor="Gray"></Entry>
         <Button Grid.Column="1" HorizontalOptions="Fill" Text="📌" Clicked="OnButtonGetCurrrentLocClicked"/>
