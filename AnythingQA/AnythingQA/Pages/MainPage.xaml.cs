@@ -40,7 +40,7 @@ namespace AnythingQA
         
         void OnButtonGroceryClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new SelectLocation());
+            Navigation.PushModalAsync(new ShoppingPage());
         }
 
         void OnButtonRestaurentClicked(object sender, EventArgs e)

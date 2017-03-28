@@ -7,6 +7,8 @@ using Xamarin.Forms.Maps;
 using Plugin.Geolocator;
 using System.Threading.Tasks;
 using System.Collections;
+using AnythingQA.Model;
+using AnythingQA.ModelManagers;
 
 namespace AnythingQA.Pages
 {
@@ -14,10 +16,16 @@ namespace AnythingQA.Pages
     {
         Plugin.Geolocator.Abstractions.Position position;
         Geocoder geocoder = new Geocoder();
-        public SelectLocation()
+        Cart cart = null;
+        double totalCost = 0.0;
+        SteamIronManager manager;
+        public SelectLocation(Cart cart = null, double totalCost = 0.0)
         {
             InitializeComponent();
             GetAddressLatLangFromSettings();
+            this.cart = cart;
+            this.totalCost = totalCost;
+            manager = SteamIronManager.DefaultManager;
         }
 
         async Task PutSomePinsOnMap()
@@ -116,9 +124,32 @@ namespace AnythingQA.Pages
             if (position == null)
                 return;
         }
-        void OnButtonGoShoppingClicked(object sender, EventArgs e)
+
+        async void OnButtonConfirmLocationAndCheckout(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new ShoppingPage());
+            await AddCart(cart);
+
+            // Order Creation
+            var order = new Order
+            {
+                Cart = cart.Id,
+                DeliveryAddress = txtDeliveryAddress.Text,
+                Amount = totalCost,
+                OrderStatus = OrderStatus.CustomerOrdered
+            };
+            await AddOrder(order);
+
+            await DisplayAlert("", "Successfully Order has been made", "OK");
+        }
+
+        async Task AddCart(Cart cart)
+        {
+            await manager.SaveCartAsync(cart);
+        }
+
+        async Task AddOrder(Order order)
+        {
+            await manager.SaveOrderAsync(order);
         }
     }
 }

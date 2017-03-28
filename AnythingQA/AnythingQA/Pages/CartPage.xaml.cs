@@ -64,35 +64,50 @@ namespace AnythingQA.Pages
 
         public async void OnButtonCheckoutClicked(object sender, EventArgs e)
         {
-            List<CartItem> cartItems = new List<CartItem>();
+            var isDefaultLocationAnswer = await DisplayAlert("", "Ship to", "Default Location", "Current Location");
+            string deliveryAddress = null;
+            Cart cart = null;
             double totalCost = 0;
+            List<CartItem> cartItems = new List<CartItem>();
 
+            // Cart Creation
             foreach (var item in tempCartItems)
             {
                 CartItem cartItem = new CartItem { Id = Guid.NewGuid().ToString("N"), Product = item.ProductId, Count = item.Count };
                 cartItems.Add(cartItem);
 
                 // Price Calculation
-                totalCost += item.Price*item.Count;
+                totalCost += item.Price * item.Count;
             }
 
-            var cart = new Cart
+            cart = new Cart
             {
                 Customer = customerId,
                 Merchant = merchantId,
                 CartItems = cartItems
             };
-            await AddCart(cart);
 
-            var order = new Order {
-                Cart = cart.Id,
-                DeliveryAddress = "GetFromCart", 
-                Amount = totalCost,
-                OrderStatus = OrderStatus.CustomerOrdered
-            };
-            await AddOrder(order);
+            if (isDefaultLocationAnswer)
+            {
+                deliveryAddress = (string)Application.Current.Properties[Constants.AppDataCustomerAddressKey];
+                await AddCart(cart);
 
-            await DisplayAlert("", "Successfully Order has been made", "OK");
+                // Order Creation
+                var order = new Order
+                {
+                    Cart = cart.Id,
+                    DeliveryAddress = deliveryAddress,
+                    Amount = totalCost,
+                    OrderStatus = OrderStatus.CustomerOrdered
+                };
+                await AddOrder(order);
+
+                await DisplayAlert("", "Successfully Order has been made", "OK");
+            }
+            else
+            {
+                await Navigation.PushModalAsync(new SelectLocation(cart, totalCost));
+            }
         }
 
         async Task AddCart(Cart cart)

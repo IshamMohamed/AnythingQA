@@ -16,7 +16,7 @@
       <StackLayout HeightRequest="400">
         <map:Map x:Name="theMap" />
       </StackLayout>
-      <Button Grid.Column="1" HorizontalOptions="Fill" Text="Go Shopping" Clicked="OnButtonGoShoppingClicked"/>
+            <Button Grid.Column="1" HorizontalOptions="Fill" Text="Confirm and Checkout" Clicked="OnButtonConfirmLocationAndCheckout"/>
     </StackLayout>
   </ContentView>
 </ContentPage>
