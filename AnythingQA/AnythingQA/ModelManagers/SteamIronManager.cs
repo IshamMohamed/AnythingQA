@@ -224,7 +224,7 @@ namespace AnythingQA.ModelManagers
             return null;
         }
 
-        public async Task<ObservableCollection<Cart>> GetCartForCustomerAsync(Customer customer, bool syncItems = false)
+        public async Task<ObservableCollection<Cart>> GetCartForCustomerAsync(string customer, bool syncItems = false)
         {
             try
             {
@@ -250,7 +250,7 @@ namespace AnythingQA.ModelManagers
             return null;
         }
 
-        public async Task<ObservableCollection<Cart>> GetCartForMerchantAsync(Merchant merchant, bool syncItems = false)
+        public async Task<ObservableCollection<Cart>> GetCartForMerchantAsync(string merchant, bool syncItems = false)
         {
             try
             {
@@ -600,6 +600,74 @@ namespace AnythingQA.ModelManagers
 #endif
                 IEnumerable<Order> items = await orderTable.ToEnumerableAsync();
                 return new ObservableCollection<Order>(items);
+            }
+            catch (MobileServiceInvalidOperationException msioe)
+            {
+                Debug.WriteLine(@"Invalid sync operation: {0}", msioe.Message);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(@"Sync error: {0}", e.Message);
+            }
+            return null;
+        }
+
+        public async Task<List<Order>> GetOrderForCustomerAsync(string customer, bool syncItems = false)
+        {
+#if OFFLINE_SYNC_ENABLED
+                if (syncItems)
+                {
+                    await this.SyncOrderAsync();
+                }
+#endif
+            try
+            {
+                ObservableCollection<Cart> carts = await GetCartForCustomerAsync(customer);
+                ObservableCollection<Order> orders = await GetOrderAsync();
+                List<Order> ordersOfCustomer = new List<Order>();
+                foreach (var order in orders)
+                {
+                    foreach (var cart in carts)
+                    {
+                        if (order.Cart.Equals(cart.Id))
+                            ordersOfCustomer.Add(order);
+                    }
+                }
+                return ordersOfCustomer;
+            }
+            catch (MobileServiceInvalidOperationException msioe)
+            {
+                Debug.WriteLine(@"Invalid sync operation: {0}", msioe.Message);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(@"Sync error: {0}", e.Message);
+            }
+            return null;
+        }
+
+        public async Task<List<Order>> GetOrderForMerchantAsync(string merchant, bool syncItems = false)
+        {
+#if OFFLINE_SYNC_ENABLED
+                if (syncItems)
+                {
+                    await this.SyncOrderAsync();
+                }
+#endif
+            try
+            {
+                ObservableCollection<Cart> carts = await GetCartForMerchantAsync(merchant);
+                ObservableCollection<Order> orders = await GetOrderAsync();
+                List<Order> ordersOfMerch = new List<Order>();
+                foreach (var order in orders)
+                {
+                    foreach (var cart in carts)
+                    {
+                        if (order.Cart.Equals(cart.Id))
+                            ordersOfMerch.Add(order);
+                    }
+                }
+                return ordersOfMerch;
             }
             catch (MobileServiceInvalidOperationException msioe)
             {
