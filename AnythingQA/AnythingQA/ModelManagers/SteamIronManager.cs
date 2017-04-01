@@ -114,7 +114,7 @@ namespace AnythingQA.ModelManagers
             return null;
         }
 
-        public async Task<ObservableCollection<ProductItem>> GetProductItemAsyncForMerchant(Merchant merchant, bool syncItems = false)
+        public async Task<ObservableCollection<ProductItem>> GetProductItemAsyncForMerchant(string merchant, bool syncItems = false)
         {
             try
             {
