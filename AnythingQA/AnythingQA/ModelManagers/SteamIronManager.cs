@@ -114,6 +114,32 @@ namespace AnythingQA.ModelManagers
             return null;
         }
 
+        public async Task<ObservableCollection<ProductItem>> GetProductItemAsyncForMerchant(Merchant merchant, bool syncItems = false)
+        {
+            try
+            {
+#if OFFLINE_SYNC_ENABLED
+                if (syncItems)
+                {
+                    await this.SyncProductItemAsync();
+                }
+#endif
+                IEnumerable<ProductItem> items = await productTable
+                    .Where(prodItem => prodItem.Merchant.Equals(merchant))
+                    .ToEnumerableAsync();
+                return new ObservableCollection<ProductItem>(items);
+            }
+            catch (MobileServiceInvalidOperationException msioe)
+            {
+                Debug.WriteLine(@"Invalid sync operation: {0}", msioe.Message);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(@"Sync error: {0}", e.Message);
+            }
+            return null;
+        }
+
         public async Task SaveProductItemAsync(ProductItem item)
         {
             if (item.Id == null)
