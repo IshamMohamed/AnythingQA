@@ -588,7 +588,7 @@ namespace AnythingQA.ModelManagers
         #endregion
 
         #region Order
-        public async Task<ObservableCollection<Order>> GetOrderAsync(bool syncItems = false)
+        public async Task<ObservableCollection<Order>> GetOrderAsync(string status, bool syncItems = false)
         {
             try
             {
@@ -598,7 +598,9 @@ namespace AnythingQA.ModelManagers
                     await this.SyncOrderAsync();
                 }
 #endif
-                IEnumerable<Order> items = await orderTable.ToEnumerableAsync();
+                IEnumerable<Order> items = await orderTable
+                    .Where(order => order.OrderStatus.Equals(status))
+                    .ToEnumerableAsync();
                 return new ObservableCollection<Order>(items);
             }
             catch (MobileServiceInvalidOperationException msioe)
@@ -612,7 +614,7 @@ namespace AnythingQA.ModelManagers
             return null;
         }
 
-        public async Task<List<Order>> GetOrderForCustomerAsync(string customer, bool syncItems = false)
+        public async Task<List<Order>> GetOrderForCustomerAsync(string customer, string status, bool syncItems = false)
         {
 #if OFFLINE_SYNC_ENABLED
                 if (syncItems)
@@ -623,7 +625,7 @@ namespace AnythingQA.ModelManagers
             try
             {
                 ObservableCollection<Cart> carts = await GetCartForCustomerAsync(customer);
-                ObservableCollection<Order> orders = await GetOrderAsync();
+                ObservableCollection<Order> orders = await GetOrderAsync(status);
                 List<Order> ordersOfCustomer = new List<Order>();
                 foreach (var order in orders)
                 {
@@ -646,7 +648,7 @@ namespace AnythingQA.ModelManagers
             return null;
         }
 
-        public async Task<List<Order>> GetOrderForMerchantAsync(string merchant, bool syncItems = false)
+        public async Task<List<Order>> GetOrderForMerchantAsync(string merchant, string status, bool syncItems = false)
         {
 #if OFFLINE_SYNC_ENABLED
                 if (syncItems)
@@ -657,7 +659,7 @@ namespace AnythingQA.ModelManagers
             try
             {
                 ObservableCollection<Cart> carts = await GetCartForMerchantAsync(merchant);
-                ObservableCollection<Order> orders = await GetOrderAsync();
+                ObservableCollection<Order> orders = await GetOrderAsync(status);
                 List<Order> ordersOfMerch = new List<Order>();
                 foreach (var order in orders)
                 {
