@@ -32,5 +32,15 @@ namespace AnythingQA
         public static string AppDataMerchantAddressKey = "merch_address";
         public static string AppDataMerchantPhoneNoKey = "merch_phone";
         public static string AppDataMerchantEmailKey = "merch_email";
+
+        // OrderStatus
+        public static string OrderStatusCustomerOrdered = "CustomerOrdered";
+        public static string OrderStatusMerchantViewed = "MerchantViewed";
+        public static string OrderStatusMerchantVerified = "MerchantVerified";
+        public static string OrderStatusMerchantRefused = "MerchantRefused";
+        public static string OrderStatusOrderPreparing = "OrderPreparing";
+        public static string OrderStatusDeliveryPending = "DeliveryPending";
+        public static string OrderStatusDeliveryOnTheWay = "DeliveryOnTheWay";
+        public static string OrderStatusDelivered = "Delivered";
     }
 }

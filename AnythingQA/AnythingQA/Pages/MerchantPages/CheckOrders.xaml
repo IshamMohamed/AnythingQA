@@ -22,14 +22,14 @@
                     <ViewCell>
                         <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
                             <Label Text="{Binding DeliveryAddress}"/>
-                            <Label Text="{Binding CardId}" IsVisible="False"/>
+                            <Label Text="{Binding Card}" IsVisible="False"/>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="5*" />
                                     <ColumnDefinition Width="5*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" HorizontalOptions="Fill" Text="{Binding NoOfItems}"/>
-                                <Label Grid.Column="1" HorizontalOptions="Fill" Text="{Binding TotalCost}"/>
+                                <Label Grid.Column="0" HorizontalOptions="Fill" Text="Cost "/>
+                                <Label Grid.Column="1" HorizontalOptions="Fill" Text="{Binding AmountToBePaid}"/>
                             </Grid>
                         </StackLayout>
                     </ViewCell>

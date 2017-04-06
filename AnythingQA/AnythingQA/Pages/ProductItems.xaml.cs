@@ -18,7 +18,6 @@ namespace AnythingQA.Pages
         {
             InitializeComponent();
             manager = SteamIronManager.DefaultManager;
-
             cartPage = new CartPage();
         }
 
