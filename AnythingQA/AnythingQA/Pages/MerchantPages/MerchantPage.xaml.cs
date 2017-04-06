@@ -29,7 +29,9 @@ namespace AnythingQA.Pages.MerchantPages
         { }
 
         private void CheckOrders_Clicked(object sender, EventArgs e)
-        { }
+        {
+
+        }
 
         private void MyOrderes_Clicked(object sender, EventArgs e)
         { }

@@ -13,7 +13,7 @@
                          IsVisible="False"
                          IsEnabled="True"
                          x:Name="syncIndicator"/>
-    <StackLayout Grid.Row="0" BackgroundColor="#5ABAFF" Padding="10,30,10,5">
+    <!--StackLayout Grid.Row="0" BackgroundColor="#5ABAFF" Padding="10,30,10,5">
       <Label TextColor="#555555" Text="Azure App Service" />
       <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
         <Entry x:Name="newItemName"
                   Placeholder="Item name" />
       </Grid>
-    </StackLayout>
+    </StackLayout-->
     <ListView x:Name="productList"
 				ItemSelected="OnSelected"
 				IsPullToRefreshEnabled="true" Refreshing="OnRefresh"
@@ -35,8 +35,6 @@
               <MenuItem Clicked="OnAddToCart" Text="Add To Cart" CommandParameter="{Binding .}"/>
             </ViewCell.ContextActions>
               <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
-                <!--Label Text="{Binding Name}"  />
-                <Label Text="{Binding Name}"  /-->
                 <Grid>
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="8*" />
